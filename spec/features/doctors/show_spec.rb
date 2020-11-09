@@ -35,4 +35,24 @@ describe 'Dr show page' do
     expect(page).to have_content(denny.name)
     expect(page).to_not have_content(rebecca.name)
   end
+
+  it "Next to each patient's name I see a button to remove" do
+    hospital = Hospital.create!(name: "Grey Sloan Memorial Hospital")
+    meredith = hospital.doctors.create!(name: "Meredith Grey",
+                                        specialty: "General Surgery",
+                                        university: "Harvard University")
+    katie = meredith.patients.create!(name: "Katie Bryce",
+                                      age: 24)
+    denny = meredith.patients.create!(name: "Denny Duquette",
+                                      age: 39)
+
+    visit("/doctors/#{meredith.id}")
+
+    within "#patient-#{katie.id}" do
+    click_button("Remove")
+    end
+
+    expect(current_path).to eq("/doctors/#{meredith.id}")
+    expect(page).to_not have_content(katie.name)
+  end
 end

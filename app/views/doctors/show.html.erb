@@ -7,8 +7,8 @@
 </section>
 
   <h3>Patients:</h3>
-<section>
   <p><% @doctor.patients.each do |patient| %></p>
-  <p><%= patient.name %></p>
+  <section id='patient-<%= patient.id%>'>
+  <p><%= patient.name %> <%= button_to "Remove", "/doctorpatients/#{@doctor.id}/#{patient.id}", method: :delete %></p>
+  </section>
   <p><% end %></p>
-</section>
