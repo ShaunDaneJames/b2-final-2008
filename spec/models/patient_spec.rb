@@ -5,7 +5,7 @@ RSpec.describe Patient, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :age }
 
-    # it { should have_many :doctorpatients}
-    # it { should have_many(:doctors).through(:doctorpatients)}
+    it { should have_many :doctorpatients}
+    it { should have_many(:doctors).through(:doctorpatients)}
   end
 end

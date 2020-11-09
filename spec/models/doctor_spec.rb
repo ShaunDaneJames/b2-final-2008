@@ -7,5 +7,8 @@ RSpec.describe Doctor, type: :model do
     it { should validate_presence_of :university }
 
     it { should belong_to :hospital}
+
+    it { should have_many :doctorpatients}
+    it { should have_many(:patients).through(:doctorpatients)}
   end
 end
